@@ -2,13 +2,21 @@
 
 from __future__ import annotations
 
-from rointesdk.rointe_api import ApiResponse, RointeAPI
+from .rointesdk.rointe_api import ApiResponse, RointeAPI
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
-from .const import CONF_INSTALLATION, CONF_PASSWORD, CONF_USERNAME, DOMAIN, PLATFORMS
+from .const import (
+    API_TYPE_AUTO,
+    CONF_API_TYPE,
+    CONF_INSTALLATION,
+    CONF_PASSWORD,
+    CONF_USERNAME,
+    DOMAIN,
+    PLATFORMS,
+)
 from .coordinator import RointeDataUpdateCoordinator
 from .device_manager import RointeDeviceManager
 
@@ -16,7 +24,14 @@ from .device_manager import RointeDeviceManager
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Rointe Heaters from a config entry."""
 
-    rointe_api = RointeAPI(entry.data[CONF_USERNAME], entry.data[CONF_PASSWORD])
+    api_type = entry.options.get(CONF_API_TYPE, entry.data.get(CONF_API_TYPE))
+    if not api_type:
+        api_type = API_TYPE_AUTO
+    rointe_api = RointeAPI(
+        entry.data[CONF_USERNAME],
+        entry.data[CONF_PASSWORD],
+        api_type=api_type,
+    )
 
     # Login to the Rointe API.
     login_result: ApiResponse = await hass.async_add_executor_job(

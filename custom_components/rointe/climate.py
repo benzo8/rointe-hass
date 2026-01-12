@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from rointesdk.device import RointeDevice
+from .rointesdk.device import RointeDevice
 
 from homeassistant.components.climate import (
     PRESET_COMFORT,
@@ -109,7 +109,7 @@ class RointeHaClimate(RointeRadiatorEntity, ClimateEntity):
     @property
     def max_temp(self) -> float:
         """Max selectable temperature."""
-        if self._radiator.user_mode_supported and self._radiator.user_mode:
+        if self._radiator.user_mode_supported() and self._radiator.user_mode:
             return self._radiator.um_max_temp
 
         return RADIATOR_TEMP_MAX
@@ -117,7 +117,7 @@ class RointeHaClimate(RointeRadiatorEntity, ClimateEntity):
     @property
     def min_temp(self) -> float:
         """Minimum selectable temperature."""
-        if self._radiator.user_mode_supported and self._radiator.user_mode:
+        if self._radiator.user_mode_supported() and self._radiator.user_mode:
             return self._radiator.um_min_temp
 
         return RADIATOR_TEMP_MIN

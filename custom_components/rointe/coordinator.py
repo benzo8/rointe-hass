@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Any
 
-from rointesdk.device import RointeDevice
+from .rointesdk.device import RointeDevice
 
 from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.const import Platform

@@ -4,19 +4,29 @@ from __future__ import annotations
 
 from typing import Any
 
-from rointesdk.rointe_api import RointeAPI
+from .rointesdk.rointe_api import RointeAPI
 import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.data_entry_flow import FlowResult
 import homeassistant.helpers.config_validation as cv
 
-from .const import CONF_INSTALLATION, CONF_PASSWORD, CONF_USERNAME, DOMAIN, LOGGER
+from .const import (
+    API_TYPE_AUTO,
+    API_TYPE_OPTIONS,
+    CONF_API_TYPE,
+    CONF_INSTALLATION,
+    CONF_PASSWORD,
+    CONF_USERNAME,
+    DOMAIN,
+    LOGGER,
+)
 
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_USERNAME): cv.string,
         vol.Required(CONF_PASSWORD): cv.string,
+        vol.Optional(CONF_API_TYPE, default=API_TYPE_AUTO): vol.In(API_TYPE_OPTIONS),
     }
 )
 
@@ -41,7 +51,11 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 step_id="user", data_schema=STEP_USER_DATA_SCHEMA
             )
 
-        rointe_api = RointeAPI(user_input[CONF_USERNAME], user_input[CONF_PASSWORD])
+        rointe_api = RointeAPI(
+            user_input[CONF_USERNAME],
+            user_input[CONF_PASSWORD],
+            api_type=user_input[CONF_API_TYPE],
+        )
 
         login_error_code = await self.hass.async_add_executor_job(
             rointe_api.initialize_authentication
@@ -108,6 +122,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             CONF_INSTALLATION: user_input[CONF_INSTALLATION],
             CONF_USERNAME: self.step_user_data[CONF_USERNAME],
             CONF_PASSWORD: self.step_user_data[CONF_PASSWORD],
+            CONF_API_TYPE: self.step_user_data[CONF_API_TYPE],
         }
 
         LOGGER.debug(
@@ -119,3 +134,40 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             description="Rointe",
             data=user_data,
         )
+
+    @staticmethod
+    def async_get_options_flow(
+        config_entry: config_entries.ConfigEntry,
+    ) -> config_entries.OptionsFlow:
+        """Create the options flow."""
+        return OptionsFlowHandler(config_entry)
+
+
+class OptionsFlowHandler(config_entries.OptionsFlow):
+    """Handle options flow for Rointe Heaters."""
+
+    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
+        """Options flow init."""
+        self._config_entry = config_entry
+
+    async def async_step_init(
+        self, user_input: dict[str, Any] | None = None
+    ) -> FlowResult:
+        """Manage the options."""
+        if user_input is None:
+            current_api_type = self._config_entry.options.get(
+                CONF_API_TYPE,
+                self._config_entry.data.get(CONF_API_TYPE, API_TYPE_AUTO),
+            )
+            return self.async_show_form(
+                step_id="init",
+                data_schema=vol.Schema(
+                    {
+                        vol.Optional(CONF_API_TYPE, default=current_api_type): vol.In(
+                            API_TYPE_OPTIONS
+                        )
+                    }
+                ),
+            )
+
+        return self.async_create_entry(title="", data=user_input)

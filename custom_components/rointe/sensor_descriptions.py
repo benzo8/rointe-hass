@@ -68,7 +68,7 @@ SENSOR_DESCRIPTIONS = [
         entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=lambda radiator: radiator.energy_data.effective_power
         if radiator.energy_data
-        else None,
+        else radiator.nominal_effective_power,
         last_reset_fn=lambda radiator: None,
     ),
 ]

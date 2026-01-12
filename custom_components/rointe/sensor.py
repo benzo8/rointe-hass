@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from rointesdk.device import RointeDevice
+from .rointesdk.device import RointeDevice
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,

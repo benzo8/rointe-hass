@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from rointesdk.device import RointeDevice
+from .rointesdk.device import RointeDevice
 
 from homeassistant.components.update import (
     UpdateDeviceClass,

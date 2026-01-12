@@ -13,6 +13,7 @@ PLATFORMS: list[Platform] = [Platform.CLIMATE, Platform.SENSOR, Platform.UPDATE]
 CONF_USERNAME = "rointe_username"
 CONF_PASSWORD = "rointe_password"
 CONF_INSTALLATION = "rointe_installation"
+CONF_API_TYPE = "rointe_api_type"
 
 ROINTE_MANUFACTURER = "Rointe"
 
@@ -21,6 +22,15 @@ ROINTE_SUPPORTED_DEVICES = ["radiator", "towel", "therm", "radiatorb", "acs", "o
 RADIATOR_DEFAULT_TEMPERATURE = 20
 
 PRESET_ROINTE_ICE = "ice"
+
+API_TYPE_AUTO = "auto"
+API_TYPE_ROINTE = "rointe"
+API_TYPE_NEXA = "nexa"
+API_TYPE_OPTIONS = {
+    API_TYPE_AUTO: "Auto (detect)",
+    API_TYPE_ROINTE: "Rointe Connect",
+    API_TYPE_NEXA: "Nexa",
+}
 
 
 class RointePreset(StrEnum):

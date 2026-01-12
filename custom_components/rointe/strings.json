@@ -5,7 +5,8 @@
         "title": "Fill in your Rointe Connect information",
         "data": {
           "rointe_username": "[%key:common::config_flow::data::email%]",
-          "rointe_password": "[%key:common::config_flow::data::password%]"
+          "rointe_password": "[%key:common::config_flow::data::password%]",
+          "rointe_api_type": "API Type"
         }
       }
     },
@@ -15,6 +16,16 @@
     },
     "abort": {
       "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Rointe options",
+        "data": {
+          "rointe_api_type": "API Type"
+        }
+      }
     }
   }
 }

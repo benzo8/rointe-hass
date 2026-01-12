@@ -11,9 +11,20 @@
             "user": {
                 "data": {
                     "rointe_password": "Password",
-                    "rointe_username": "Email"
+                    "rointe_username": "Email",
+                    "rointe_api_type": "API Type"
                 },
                 "title": "Fill in your Rointe Connect information"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Rointe options",
+                "data": {
+                    "rointe_api_type": "API Type"
+                }
             }
         }
     }
