@@ -9,7 +9,7 @@ When you configure this integration for Nexa, Home Assistant will treat it as a
 new installation. All devices will get new entity IDs, so you must update any
 existing automations, scripts, and dashboards that referenced the old IDs.
 
-# 🌞 rointe-hacs
+# rointe-hass
 
 A minimal integration for Rointe radiators in Home Assistant. 🏡
 
