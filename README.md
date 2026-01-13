@@ -11,14 +11,13 @@ existing automations, scripts, and dashboards that referenced the old IDs.
 
 # 🌞 rointe-hacs
 
-
 A minimal integration for Rointe radiators in Home Assistant. 🏡
 
 **Supported Devices**
 - Series-D Radiators
-- Belize and Olympia Radiators (experimental)
+- Belize and Olympia Radiators (Nexa support untested)
 - Series-D Towel rails
-- Oval Towels
+- Oval Towels (Nexa support untested)
 - Thermostats
 
 ## Features
@@ -37,16 +36,4 @@ Please follow these steps:
 4. Add the integration from Settings -> Devices & Services -> Add Integration -> *Rointe Heaters*.
 5. Select **Nexa** as the API type in the config flow.
 
-## Project status
 
-This project is under minimum support. Contributions are welcome. I also appreciate feedback and bug reports from users of other devices other than the Series-D radiators.
-
-## Upcoming features
-
-- Configure preset temperatures
-- Control screen brightness (for elegible devices)
-- Control screen color.
-
-### Support
-<a href="https://buymeacoffee.com/tggm" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-ETH / ERC20: 0x0165C7afd359B85a6F7f1D22d6EC7FB183f3b446
