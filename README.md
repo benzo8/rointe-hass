@@ -1,5 +1,16 @@
 # ⚠️ This repository has been moved to https://github.com/tggm/rointe-radiators
 
+# Nexa Preview (non-HACS)
+
+This fork contains Nexa support via WebSocket and is **not HACS-ready**.
+It is provided **as-is**, without warranty or support guarantees.
+
+## Important migration note
+
+When you configure this integration for Nexa, Home Assistant will treat it as a
+new installation. All devices will get new entity IDs, so you must update any
+existing automations, scripts, and dashboards that referenced the old IDs.
+
 # 🌞 rointe-hacs
 
 
