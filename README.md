@@ -1,5 +1,3 @@
-# ⚠️ This repository has been moved to https://github.com/tggm/rointe-radiators
-
 # Nexa Preview (non-HACS)
 
 This fork contains Nexa support via WebSocket and is **not HACS-ready**.
@@ -33,10 +31,10 @@ A minimal integration for Rointe radiators in Home Assistant. 🏡
 ## Installation
 Please follow these steps:
 
-1. Install HACS. Follow instructios [here](https://www.hacs.xyz/docs/use/download/download/).
-2. Add this [repository](https://github.com/tggm/rointe-hacs) as a custom repository in HACS ([see instructions here](https://www.hacs.xyz/docs/faq/custom_repositories/))
-3. **Note**: If you're upgrading from a version prior to 2.0.0 you should remove the existing integration.
-4. You should now have a new integration available (*Rointe Heaters*) under Settings -> Integrations in Home Assistant.
+1. Copy `custom_components/rointe` into your Home Assistant `custom_components` directory.
+2. Restart Home Assistant.
+3. Add the integration from Settings -> Devices & Services -> Add Integration -> *Rointe Heaters*.
+4. Select **Nexa** as the API type in the config flow.
 
 ## Project status
 
