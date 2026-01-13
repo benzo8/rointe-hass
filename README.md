@@ -32,9 +32,10 @@ A minimal integration for Rointe radiators in Home Assistant. 🏡
 Please follow these steps:
 
 1. Copy `custom_components/rointe` into your Home Assistant `custom_components` directory.
-2. Restart Home Assistant.
-3. Add the integration from Settings -> Devices & Services -> Add Integration -> *Rointe Heaters*.
-4. Select **Nexa** as the API type in the config flow.
+2. If you previously vendored the SDK, remove any old `custom_components/rointesdk` folder.
+3. Restart Home Assistant (it should auto-install the `websocket-client` dependency).
+4. Add the integration from Settings -> Devices & Services -> Add Integration -> *Rointe Heaters*.
+5. Select **Nexa** as the API type in the config flow.
 
 ## Project status
 
