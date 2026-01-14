@@ -3,6 +3,11 @@
 This fork contains Nexa support via WebSocket and is **not HACS-ready**.
 It is provided **as-is**, without warranty or support guarantees.
 
+## Repository moved
+
+Active development has moved to `https://github.com/benzo8/rointe-radiators`.
+This repository is archived and kept only for historical reference.
+
 ## Important migration note
 
 When you configure this integration for Nexa, Home Assistant will treat it as a
@@ -35,5 +40,4 @@ Please follow these steps:
 3. Restart Home Assistant (it should auto-install the `websocket-client` dependency).
 4. Add the integration from Settings -> Devices & Services -> Add Integration -> *Rointe Heaters*.
 5. Select **Nexa** as the API type in the config flow.
-
 
